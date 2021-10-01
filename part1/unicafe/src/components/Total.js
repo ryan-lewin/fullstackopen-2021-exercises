@@ -1,8 +1,11 @@
 
 const Total = props => {
+	const {parts} = props
+
 	return (
 		<section>
-			<p>Number of exercises {props.part1.exercises + props.part2.exercises + props.part3.exercises}</p>
+			{/* Uses reduce to loop over and add the values in the array */}
+			<p>Number of exercises {parts.reduce((value, part) => value + part.exercises, 0)}</p> 
 		</section>
 	)
 }
