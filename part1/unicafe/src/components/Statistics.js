@@ -8,15 +8,19 @@ const Statistics = ({goodValue, neutralValue, badValue, totalValue}) => {
 
   if(totalValue > 0) {
     return (
-      <div>
-        <h2>Statistics</h2>
-        <SingleStatistic value={goodValue} text='Good'/>
-        <SingleStatistic value={neutralValue} text='Neutral'/>
-        <SingleStatistic value={badValue} text='Bad'/>
-        <SingleStatistic value={totalValue} text='Total'/>
-        <SingleStatistic value={averageValue} text='Average'/>
-        <SingleStatistic value={positiveValue} text='Positive'/>
-      </div>
+        <table>
+          <tbody>
+            <tr>
+              <th><h2>Statistics</h2></th>
+            </tr>
+            <SingleStatistic value={goodValue} text='Good'/>
+            <SingleStatistic value={neutralValue} text='Neutral'/>
+            <SingleStatistic value={badValue} text='Bad'/>
+            <SingleStatistic value={totalValue} text='Total'/>
+            <SingleStatistic value={averageValue} text='Average'/>
+            <SingleStatistic value={positiveValue} text='Positive'/>
+          </tbody>
+        </table>
     )
   }
 
