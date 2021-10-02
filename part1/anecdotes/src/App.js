@@ -14,19 +14,27 @@ const App = () => {
   ])
   const [selected, setSelected] = useState(0)
 
+  const [popular, setPopular] = useState({})
+
   const changeAnecdote = () => setSelected(Math.floor(Math.random() * (anectdotes.length - 1)))
 
   const voteForAnecdote = () => {
     const newAnecdotes = [...anectdotes]
     newAnecdotes[selected].votes += 1
     setAnecdotes(newAnecdotes)
+    setPopular(findMostPopularAnecdote)
   }
+
+  const findMostPopularAnecdote = () => anectdotes.reduce((max, anecdote) => max.votes > anecdote.votes ? max: anecdote)
 
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       <Anecdote votes={anectdotes[selected].votes} text={anectdotes[selected].text}/>
       <Button onClick={voteForAnecdote} text='vote' />
       <Button onClick={changeAnecdote} text='Change Anecdote'/>
+      <h2>Anecdote with the most votes</h2>
+      <Anecdote votes={popular.votes || 0} text={popular.text || 'No votes have been cast'} />
     </div>
   );
 }
