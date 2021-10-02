@@ -13,20 +13,21 @@ function App() {
     setGood(good + 1)
     setTotal(total + 1)
   }
+  
   const incrementNeutral = () => {
     setNeutral(neutral + 1)
     setTotal(total + 1)
   }
-
-  const incrementBad = () => {
-    setBad(bad + 1)
-    setTotal(total + 1) 
-  }
+  
+    const incrementBad = () => {
+      setBad(bad + 1)
+      setTotal(total + 1)
+    }
 
   return (
     <div>
       <Feedback setValues={[incrementGood, incrementNeutral, incrementBad]}/>
-      <Statistics goodValue={good} neutralValue={neutral} badValue={bad} totalValue={total}/>
+      <Statistics goodValue={good} neutralValue={neutral} badValue={bad} totalValue={total} />
     </div>
   );
 }
