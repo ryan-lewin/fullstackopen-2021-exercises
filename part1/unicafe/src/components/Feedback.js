@@ -4,7 +4,7 @@ import Button from './Button'
 const Feedback = ({setValues}) => {
   return (
     <div>
-      <h2>Feedback</h2>
+      <h2>Give Feedback</h2>
       <div style={{display: 'flex'}}>
         <Button onclick={setValues[0]} text='Good'/>
         <Button onclick={setValues[1]} text='Neutral'/>
