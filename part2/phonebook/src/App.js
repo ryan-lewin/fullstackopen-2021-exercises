@@ -4,13 +4,14 @@ import Numbers from "./components/Numbers";
 
 const App = () => {
   const [people, setPeople] = useState([
-    { id: 0, name: 'Ryan Lewin'}
+    { id: 0, name: 'Ryan Lewin', number: '0412345678'}
   ])
   
-  const addPerson = data => {
+  const addPerson = (newName, newNumber) => {
     const newPerson = {
       id: people.length,
-      name: data.name
+      name: newName,
+      number: newNumber
     }
 
     !nameExists(newPerson.name) 
