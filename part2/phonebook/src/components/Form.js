@@ -19,6 +19,7 @@ const Form = ({sendData}) => {
 
   return (
     <div>
+      <h2>Add contact</h2>
       <form onSubmit={addDetails}>
         <label>Name <input value={newName} onChange={handleNameChange}></input></label>
         <br />
