@@ -1,27 +1,22 @@
 import React from 'react'
 
-const Country = ({countries}) => {
+const Country = ({country}) => {
 
-  if(countries.length === 1){
-    if(countries[0].cca2 !== 'error') {
-      const country = countries[0]
-      return (
-        <div>
-          <h3>{country.name.common}</h3>
-          <p>Capital: {country.capital}</p>
-          <p>Population: {country.population}</p>
-          <h4>Languages</h4>
-          <ul>
-            {Object.entries(country.languages).map(([key, value]) => {
-              return <li key={key}>{value}</li>
-            })}
-          </ul>
-          <img alt={`${country.name.common} flag`} src={country.flags.png} />
-        </div>
-      )
-    } else { return (<> </>) }
-  } else { return (<> </>) }
-
+  return country.length === 1
+    ?   
+      <div>
+        <h3>{country[0].name.common}</h3>
+        <p>Capital: {country[0].capital}</p>
+        <p>Population: {country[0].population}</p>
+        <h4>Languages</h4>
+        <ul>
+          {Object.entries(country[0].languages).map(([key, value]) => {
+            return <li key={key}>{value}</li>
+          })}
+        </ul>
+        <img alt={`${country[0].name.common} flag`} src={country[0].flags.png} />
+      </div>
+    : <> </>
 }
 
 export default Country

@@ -7,7 +7,7 @@ import Search from "./components/Search";
 const App = () => {
   const [countries, setCountries] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
-  // const [selectedCountry, setSelectedCountry] = useState()
+  const [selectedCountry, setSelectedCountry] = useState({})
   
   const updateSearchTerm = receivedTerm => setSearchTerm(receivedTerm)
 
@@ -15,6 +15,11 @@ const App = () => {
     return countries.length <= 10
       ? countries.slice(0, 10)
       : [{cca2:'error', name: {common:'Too many matches, specify another filter'}}]
+  }
+
+  const updateSelectedCountry = countryCode => {
+    const newSelectedCountry = countries.filter(country => country.cca2 === countryCode)
+    setSelectedCountry(newSelectedCountry)
   }
 
   useEffect(() => {
@@ -32,8 +37,8 @@ const App = () => {
     <div className="App">
       <h1>Countries</h1>
       <Search searchTerm={searchTerm} sendSearchTerm={updateSearchTerm}/>
-      <Results countries={countries}/>
-      <Country countries={countries}/>
+      <Results countries={countries} sendSelectedCountry={updateSelectedCountry}/>
+      <Country country={selectedCountry}/>
     </div>
   );
 }
