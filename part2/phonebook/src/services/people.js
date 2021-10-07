@@ -1,4 +1,5 @@
 import axios from "axios";
+import uniqid from 'uniqid';
 
 const baseUrl = 'http://localhost:3001/people'
 
@@ -8,13 +9,14 @@ const getAll = () => {
 }
 
 const create = newPerson => {
+  newPerson.id = uniqid()
   const request = axios.post(baseUrl, newPerson)
   return request.then(response => response.data)
 }
 
 const update = (id, newDetails) => {
   const request = axios.put(`${baseUrl}/${id}`, newDetails)
-  return request.then(response => response.data)
+  return request.then(response => getAll())
 }
 
 const remove = id => {

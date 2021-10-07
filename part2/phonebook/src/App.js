@@ -17,17 +17,27 @@ const App = () => {
   
   const addPerson = (newName, newNumber) => {
     const newPerson = {
-      id: people.length,
       name: newName,
       number: newNumber
     }
-
-    !nameExists(newPerson.name) 
-      ? peopleService.create(newPerson)
+    if(!nameExists(newName)) {
+      peopleService.create(newPerson)
       .then(response => {
         setPeople(people.concat(newPerson)) 
       })
-      : alert(`${newPerson.name} has already been added to the phonebook`)
+    } else {
+      updatePerson(people.filter(person => person.name === newName)[0], newPerson)
+    }
+  }
+
+  const updatePerson = (person, newDetails) => {
+    const confirmedUpdate = window.confirm('Would you like to update?')
+    if(confirmedUpdate === true){
+      peopleService.update(person.id, newDetails)
+      .then(response => {
+        setPeople(response)
+      })
+    }
   }
 
   const deletePerson = id => {
