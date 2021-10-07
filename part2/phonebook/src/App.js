@@ -30,6 +30,16 @@ const App = () => {
       : alert(`${newPerson.name} has already been added to the phonebook`)
   }
 
+  const deletePerson = id => {
+    const confirmed = window.confirm('Confirm deletion')
+    if(confirmed === true) {
+      peopleService.remove(id)
+      .then(response => {
+        setPeople(response)
+      })
+    }
+  }
+
   const updateFilter = updatedFilter => {
     setFilter(updatedFilter)
   }
@@ -42,7 +52,7 @@ const App = () => {
       <Search sendFilter={updateFilter}/>
       <Form sendData={addPerson}/>
       <h2>Numbers</h2>
-      <Numbers people={people} filter={filter}/>
+      <Numbers people={people} filter={filter} sendDeleteData={deletePerson}/>
     </div>
   );
 }
