@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import peopleService from "./services/people";
 import Search from "./components/Search";
 import Form from "./components/Form";
 import Numbers from "./components/Numbers";
@@ -23,7 +24,10 @@ const App = () => {
     }
 
     !nameExists(newPerson.name) 
-      ? setPeople(people.concat(newPerson)) 
+      ? peopleService.create(newPerson)
+      .then(response => {
+        setPeople(people.concat(newPerson)) 
+      })
       : alert(`${newPerson.name} has already been added to the phonebook`)
   }
 
